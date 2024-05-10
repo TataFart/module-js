@@ -1,10 +1,9 @@
 
 const modifyStr = (string) => {
-    let newString = string.toLowerCase();
-    let firstLetter = string.charAt(0);
-    let restString = string.slice(1);
-    newString = firstLetter.toUpperCase() + restString.toLowerCase();
-    return newString;
+    string = string.toLowerCase();
+    string = string.trim();   
+    const formString = string[0].toUpperCase() + string.slice(1);
+    return formString;
 }
 
-console.log(modifyStr("hello World"));
+console.log(modifyStr("   hellO World From ME  "));

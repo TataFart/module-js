@@ -1,10 +1,10 @@
-const a = +prompt("Введите число");
-const b = +prompt("Введите второе число");
+// const a = +prompt("Введите число");
+// const b = +prompt("Введите второе число");
 
-const findMin = (a,b) => {
-    const min = a < b ? `${a} - минимальное` : `${b} - минимальное`;
-    return min;
-}
+// const findMin = (a,b) => {
+//     (a - b > b - a) 
+ 
+// }
 
 
-console.log(findMin(a,b));
+// console.log(findMin(a,b));
