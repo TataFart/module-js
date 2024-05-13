@@ -1,6 +1,7 @@
-const convertEuroinRubl = price => price = price * 1.2 * 73;
- 
-   
-
-console.log(`Сумма вашей покупки после конвертации составляет ${convertEuroinRubl(20)} рублей`);
+for(i = 1; i <= 10; i++) {
+    console.log("************");
+    for(x = 1; x <= 10; x++) {
+        console.log(`${i} ** ${x} = ${i**x}`);
+    }
+}
 

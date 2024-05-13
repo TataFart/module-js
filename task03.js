@@ -1,24 +1,8 @@
-const calculate = (sum, amount, promo) => {
-    let finalSum = sum;
-    if (amount > 10) {
-        finalSum -= sum *0.03;      
+const reverseString = (str) => {
+    let newString = "";
+    for (let i = str.length - 1; i >= 0; i--) {
+      newString += str[i];
     }
-
-    if (sum > 30000) {
-        finalSum -= (finalSum - 30000) * 0.15;       
-    }
-
-    if (promo === "METHED") {
-        finalSum -= finalSum * 0.1;        
-    }
-
-    if (promo === "G3H2Z1" && finalSum > 2000 ) {        
-        finalSum -= 500;       
-    }
-
-    return finalSum;
-}
-
-console.log(`Итоговая сумма покупки ${calculate(40000, 11)}`);
-console.log(`Итоговая сумма покупки ${calculate(40000, 11, 'METHED')}`);
-console.log(`Итоговая сумма покупки ${calculate(40000, 11, 'G3H2Z1')}`);
+    console.log(newString);
+  }
+  reverseString('My name is Tanya');

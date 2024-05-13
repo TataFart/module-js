@@ -1,9 +1,11 @@
-
-const modifyStr = (string) => {
-    string = string.toLowerCase();
-    string = string.trim();   
-    const formString = string[0].toUpperCase() + string.slice(1);
-    return formString;
+const isPrime = (num) => {
+    for (i = 2; i < num; i++) {
+        if (!(num % i)) {           
+           return false;         
+       }         
+   }
+   return true;
 }
 
-console.log(modifyStr("   hellO World From ME  "));
+console.log(isPrime(151));
+
