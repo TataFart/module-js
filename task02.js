@@ -1,11 +1,17 @@
 const isPrime = (num) => {
-    for (i = 2; i < num; i++) {
-        if (!(num % i)) {           
-           return false;         
-       }         
-   }
-   return true;
+    let i = 2;
+    do {       
+        if ((num < 2) || !(num % i)   ) {           
+            return false;         
+           } 
+           i++
+    } while (i < num )
+         
+        return true;
+    }
+
+
+for( let x = -10, count = 0 ; x <= 100; x++ )
+    if(isPrime(x)){
+    console.log(`${++count}. ${x}`);
 }
-
-console.log(isPrime(151));
-
