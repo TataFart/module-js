@@ -1,17 +1,10 @@
-const isPrime = (num) => {
-    let i = 2;
-    do {       
-        if ((num < 2) || !(num % i)   ) {           
-            return false;         
-           } 
-           i++
-    } while (i < num )
-         
-        return true;
+const allCashbox = [4500, 3210, 650, 1250, 7830, 990, 13900, 370];
+
+const getAverageValue = arr => {
+    let sum = 0;
+    for(let i = 0; i < arr.length; i++){
+        sum += arr[i];        
     }
-
-
-for( let x = -10, count = 0 ; x <= 100; x++ )
-    if(isPrime(x)){
-    console.log(`${++count}. ${x}`);
+    return(Math.floor(sum/arr.length))
 }
+console.log("Cредний чек за день:", getAverageValue(allCashbox));

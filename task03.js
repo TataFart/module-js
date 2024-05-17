@@ -1,9 +1,10 @@
-const reverseString = (str) => {
-    let newString = "";
-    str = str.trim();
-    for (let i = str.length - 1; i >= 0; i--) {
-      newString += str[i];
-    }
-    console.log(newString);
+const names= ['Noah', 'Liam', 'Mason', 'Jacob', 'Robot', 'William', 'Ethan', 'Michael', 'Alexander'];
+const addPrefix = (arr, addition) => {
+  for (let i=0; i< arr.length; i++){
+    arr[i] = addition + " " + arr[i];
   }
-  reverseString('My name is Tanya');
+  return arr;
+
+} 
+
+console.log(addPrefix(names, "Mr"));
