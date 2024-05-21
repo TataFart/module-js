@@ -8,14 +8,15 @@ const allCash = [
     [6, 13900], 
     [1, 370]
   ];
- 
 
- const getAveragePriceGoods = (arr) => {
-    let sumPrice = 0;
-    for (let i = 0; i < arr.length; i++) {      
-        sumPrice += (arr[i][1] / arr[i][0]);
+
+  const getAveragePriceGoods = (products) => {
+   
+   let sum = products.reduce((acc, curr) => {return (acc + curr[1]);}, 0);
+   let amount = products.reduce((acc, curr) => {return (acc + curr[0]);}, 0);
+   
+   return Math.floor(sum / amount) 
     }
-    return sumPrice / arr.length;   
- }
+   
 
 console.log("Средняя стоимость одного товара: ", getAveragePriceGoods(allCash));
