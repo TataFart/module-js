@@ -10,13 +10,21 @@ const allCash = [
   ];
 
 
-  const getAveragePriceGoods = (products) => {
+  const getAveragePriceGoods = (products) => products
+    .reduce(([totalAmount, totalSum], [amount, sum]) => [
+      totalAmount + amount,
+      totalSum + sum
+    ])
+    .reduce((totalAmount, totalSum) => (totalSum/ totalAmount).toFixed(2))
+
+    
+  //  let sum = products.reduce((acc, curr) => {return (acc + curr[1]);}, 0);
+  //  let amount = products.reduce((acc, curr) => {return (acc + curr[0]);}, 0);
    
-   let sum = products.reduce((acc, curr) => {return (acc + curr[1]);}, 0);
-   let amount = products.reduce((acc, curr) => {return (acc + curr[0]);}, 0);
-   
-   return Math.floor(sum / amount) 
-    }
+  //  return Math.floor(sum / amount) 
+
+
+    
    
 
 console.log("Средняя стоимость одного товара: ", getAveragePriceGoods(allCash));
