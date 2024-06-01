@@ -1,7 +1,15 @@
-const allCashbox = [4500, 3210, 650, 1250, 7830, 990, 13900, 370];
 
-const getAverageValue = arr => {
+    
+const randNums1 = (length, n, m) => {
+    
+    let min = Math.min(n, m);
+    let max = Math.max(n,m)
+        return [...new Array(length)]
+        .map(() => Math.floor(Math.random() * (max - min + 1) + min))
+   
+  }
+ 
+ 
 
-    return Math.floor(arr.reduce((currentSum, currentNumber) => (currentSum + currentNumber)) / arr.length);
-}
-console.log("Cредний чек за день:", getAverageValue(allCashbox));
+
+  console.log(randNums1(5, 3, -5));
