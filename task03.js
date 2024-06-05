@@ -2,31 +2,27 @@ const randNums3 = (length, n, m, parity="") => {
   let min = Math.min(n, m);
   let max = Math.max(n,m);
   const arr = [];  
-    for(let len = 0; len < length; len++ ){
-      let random = Math.floor(Math.random() * (max - min + 1) + min);     
-      switch(parity) {
-
-        case 'odd':
-          if (random %2) {
-            arr.push(random);        
-            } else {
-                len--;
-          }
-          break;
-
-        case 'even':  
-          if (!(random %2 ) && random != 0) {
-            arr.push(random);         
-            } else {
+  for(let len = 0; len < length; len++ ){
+    let random = Math.floor(Math.random() * (max - min + 1) + min);     
+    switch(parity) {
+      case 'odd':
+        if (random %2) {
+          arr.push(random);        
+        } else {
             len--;
           }
-          break;
-
-        default:
-          arr.push(random);          
-      }           
-    
-    }
+        break;
+      case 'even':  
+        if (!(random %2 ) && random != 0) {
+         arr.push(random);         
+        } else {
+         len--;
+          }
+        break;
+      default:
+        arr.push(random);          
+    }           
+  }
   return arr;
 }
 
