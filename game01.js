@@ -22,6 +22,6 @@ do {
     console.log(userNumber);
     } 
     }
- while (!(userNumber === null || userNumber === ""))
+ while (!(userNumber === null))
     console.log("цикл остановлен");
 
