@@ -1,10 +1,43 @@
 let a = prompt("Введите первое число");
-let b = prompt("Введите второе число");
-min = Math.min(a, b);
-max = Math.max(a, b);
 
-let secretNumber = Math.floor(Math.random() * (max - min + 1) + min);
+if (a === "" || a === null) {
+    while (a === "" || a === null) {
+        a = prompt("Введите первое число");}
+}
+
+let b = prompt("Введите второе число");
+
+if (b === "" || b === null) {
+    while (b === "" || b === null) {
+        b = prompt("Введите второе число");}
+}
+
+const min = Math.min(a, b);
+const max = Math.max(a, b);
 const guessNums = [];
+let secretNumber = Math.floor(Math.random() * (max - min + 1) + min);
+console.log(secretNumber);
+let userNumber = "";
+
+const checkNum = (userNumber) => {        
+    switch (true) {
+        case userNumber === 0 :
+            alert("Чао");
+            break;
+        case +userNumber === secretNumber :
+            alert("В точку! Угаал!!!"); 
+            game = 0;
+            break;           
+        case userNumber > secretNumber :
+            alert(`Загаданное число меньше, чем  ${userNumber}`);
+            break;
+        case userNumber < secretNumber :
+            alert(`Загаданное число больше, чем  ${userNumber}`);
+            break;
+        default:
+            alert("Чао");               
+    }     
+}
 
 if(min === 50 && max === 100) {
     let attempts = 15;
@@ -12,34 +45,54 @@ if(min === 50 && max === 100) {
     attempts = Math.round((max-min + 1) * 0.3);
 }
 
-let userNumber = prompt(`Компьютер загадал число от ${min} до ${max}. Попробуй угадать его. У тебя ${attempts} попыток`);
+while (attempts > 0) { 
+    let userNumber = prompt(`Компьютер загадал число от ${min} до ${max}. Попробуй угадать его. У тебя ${attempts} попыток`);  
+    
+    if (userNumber === "") {        
+        while (userNumber === "") {
+            userNumber = prompt("Вы ввели пустую строку. Введите число");            
+        }       
+    }
+  
+   if ( userNumber === null) {
+        attempts = 0;
+        console.log("stop");     
+   } else {
+        switch (true) {
+            case guessNums.includes(userNumber) :
+                while (guessNums.includes(userNumber)) {                              
+                    userNumber = prompt("Это число вы уже вводили.Введите новое");    
+                    if (userNumber === "") {        
+                        while (userNumber === "") {
+                            userNumber = prompt("Вы ввели пустую строку. Введите число"); 
+                            if (guessNums.includes(userNumber)) {
+                                while (guessNums.includes(userNumber)) {                              
+                                    userNumber = prompt("Это число вы уже вводили.Введите новое"); }
+                            }                                                   
+                        }
+                    }                         
+                }               
+                if (userNumber === null) {
+                    attempts = 0;
+                    console.log("stop");     
+                } else { guessNums.push(userNumber);
+                    attempts--;  
+                    console.log(guessNums); 
+                    console.log(attempts); 
+                    checkNum(userNumber); }      
+                    break;
 
-do { 
-      
-    if ( guessNums.includes(userNumber)) {
-        userNumber = prompt("Это число вы уже вводили. Введите новое число");
-    } else {
-        guessNums.push(userNumber);
-        attempts--;
-        if (attempts === 0) {
-            alert("Вы проиграли, попыток больше нет. В слдующий раз повезёт");
-            break;
+            case !(guessNums.includes(userNumber)) :
+                guessNums.push(userNumber);
+                attempts--;  
+                console.log(guessNums); 
+                console.log(attempts); 
+                checkNum(userNumber); 
+                break;               
+
+            default:   
+            attempts = 0;
+            console.log("stop");  
         }
-       
-        if (userNumber === null || userNumber === "") {
-            alert("Чао")
-        } else if(+userNumber === secretNumber) {
-            alert(`В точку! Угаал!!! Ещё осталось ${attempts} попыток!!!`);
-            break; 
-        } else if (userNumber > secretNumber) {
-        userNumber = prompt(`Загаданное число меньше, чем  ${userNumber}. Попробуйте ещё. У вас осталось ${attempts} попытки `)
-       
-        } else if (userNumber < secretNumber) {
-        userNumber = prompt(`Загаданное число больше, чем  ${userNumber}. Попробуйте ещё.  У вас осталось ${attempts} попытки`)
-        
-        }     
-      
-        }
-    } while (!(userNumber === null || userNumber === ""))
-
-
+    }
+}
