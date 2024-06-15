@@ -3,29 +3,38 @@
 let secretNumber = Math.round(Math.random() * 100);
 console.log(secretNumber);
 let userNumber = "";
+let game = true;
 
-do {
-    userNumber = +prompt("Компьютер загадал число от 1 до 100. Попробуй угадать его");
+
+while (game){ 
+    userNumber = prompt("Компьютер загадал число от 1 до 100. Попробуй угадать его");
+
+    if (typeof userNumber === "object"){
+        game = false;
+        break;
+    }
 
     switch (true) {
-        case userNumber === 0 :
-            alert("Чао");
-            break;
-        case userNumber === secretNumber :
-            alert("В точку! Угаал!!!"); 
-            break;           
+        case isNaN(+userNumber):
+        case userNumber < 1 :
+        case userNumber > 100 :        
+            alert("Некорректный ввод");
+            break;        
+
         case userNumber > secretNumber :
             alert(`Загаданное число меньше, чем  ${userNumber}`);
             break;
+            
         case userNumber < secretNumber :
             alert(`Загаданное число больше, чем  ${userNumber}`);
             break;
-        default:
-            alert("Чао");               
-    }     
-}
 
-while (!(userNumber === 0))  
+        default:
+            alert("В точку! Угаал!!!"); 
+                break; 
+                  
+    }     
+}  console.log("конец");
 
 
 
