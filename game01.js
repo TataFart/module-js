@@ -1,23 +1,20 @@
-
-
-let secretNumber = Math.round(Math.random() * 100);
-console.log(secretNumber);
 let userNumber = "";
 let game = true;
 
+const secretNumber = Math.round(Math.random() * 100);
 
+// while (userNumber !== nul  && +userNumber!== secretNumber)
 while (game){ 
     userNumber = prompt("Компьютер загадал число от 1 до 100. Попробуй угадать его");
 
-    if (typeof userNumber === "object"){
-        game = false;
-        break;
-    }
 
     switch (true) {
+        case userNumber === null:
+            game = false;
+            break;
         case isNaN(+userNumber):
-        case userNumber < 1 :
-        case userNumber > 100 :        
+        case +userNumber < 1 :
+        case +userNumber > 100 :        
             alert("Некорректный ввод");
             break;        
 
@@ -31,10 +28,11 @@ while (game){
 
         default:
             alert("В точку! Угаал!!!"); 
-                break; 
+            game = false
                   
     }     
-}  console.log("конец");
+}  
+console.log("конец");
 
 
 
