@@ -3,9 +3,7 @@ const cart = {
     totalPrice: 0,
     count: 0,
 
-    getTotalPrice: function() {
-        return this.totalPrice;
-    },
+  
 
     increaseCount: function (count) {
         this.count += count;
@@ -18,19 +16,18 @@ const cart = {
         );
 
        this.count = cart.increaseCount(count);
-       this.totalPrice = cart.calculateItemPrice();
+   
 
        return this.items;
-   },  
+   },   
 
     calculateItemPrice: function() {
-        this.totalPrice = this.items.reduce((totalPrice, item) => {
+        totalPrice = this.items.reduce((totalPrice, item) => {
             totalPrice += item.price * item.count;           
             return totalPrice;
         }, 0);  
-
-        return this.totalPrice;
-    },
+        return totalPrice;
+            },
 
     clear: function() {
         this.items.splice(0, this.items.length);
@@ -45,8 +42,17 @@ const cart = {
 };
 
 
+Object.defineProperty(cart, 'totalPrice', {
+    get() {
+        return this.calculateItemPrice();
+    }
+})
+
 cart.add("milk", 67, 1);
 cart.add("cream", 100, 2);
+
+console.log(cart.totalPrice);
+
 cart.add("banana", 149,2);
 cart.print()
 
@@ -57,8 +63,5 @@ cart.clear();
 
 cart.add("vine", 499, 1);
 cart.print();
-
-
-
 
 
