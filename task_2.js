@@ -24446,8 +24446,8 @@ const listIPv4 = [
     "10.0.32.20"
   ];
 const getNumberOfUnicIp = () => {
-  unicIp  = new Set(listIPv4);
-   return unicIp.size;
+   
+   return new Set(listIPv4).size;
 }
 
 console.log(getNumberOfUnicIp());
