@@ -22,11 +22,12 @@ const cart = {
    },   
 
     calculateItemPrice: function() {
-        totalPrice = this.items.reduce((totalPrice, item) => {
-            totalPrice += item.price * item.count;           
-            return totalPrice;
+        
+        return this.items.reduce((acc, item) => {
+            acc += item.price * item.count;           
+            return acc
         }, 0);  
-        return totalPrice;
+      
             },
 
     clear: function() {
@@ -48,6 +49,7 @@ Object.defineProperty(cart, 'totalPrice', {
     }
 })
 
+console.log(cart);
 cart.add("milk", 67, 1);
 cart.add("cream", 100, 2);
 
