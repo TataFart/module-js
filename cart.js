@@ -1,6 +1,8 @@
 const cart = {
     items: [],
-    totalPrice: 0,
+    get totalPrice() {
+        return this.calculateItemPrice()
+    },
     count: 0,
 
   
@@ -43,11 +45,7 @@ const cart = {
 };
 
 
-Object.defineProperty(cart, 'totalPrice', {
-    get() {
-        return this.calculateItemPrice();
-    }
-})
+// 
 
 console.log(cart);
 cart.add("milk", 67, 1);
