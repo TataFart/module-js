@@ -1,39 +1,35 @@
-let userNumber = "";
-let game = true;
 
-const secretNumber = Math.round(Math.random() * 100);
+'use strict';
 
-const gamebot = () =>{
-    if (game === true) {        
 
-        userNumber = prompt("Компьютер загадал число от 1 до 100. Попробуй угадать его");
+const gamebot = (secretNumber) =>{
 
-            switch (true) {
-                case userNumber === null:
-                    game = false;
+    const  userNumber = prompt("Компьютер загадал число от 1 до 100. Попробуй угадать его");
+   
+    switch (true) {
+        case userNumber === null:                  
                     break;
-                case isNaN(+userNumber):
-                case +userNumber < 1 :
-                case +userNumber > 100 :        
+        case isNaN(+userNumber):
+        case +userNumber < 1 :
+        case +userNumber > 100 :        
                     alert("Некорректный ввод");
-                    break;        
-        
-                case userNumber > secretNumber :
+                    gamebot(secretNumber);   
+                    break;      
+        case userNumber > secretNumber :
                     alert(`Загаданное число меньше, чем  ${userNumber}`);
-                    break;
-                    
-                case userNumber < secretNumber :
-                    alert(`Загаданное число больше, чем  ${userNumber}`);
-                    break;
+                    gamebot(secretNumber);  
+                    break;                 
+        case userNumber < secretNumber :
+            alert(`Загаданное число больше, чем  ${userNumber}`);
+            gamebot(secretNumber);   
+            break;
         
-                default:
+        default:
                     alert("В точку! Угаал!!!"); 
-                    game = false;                          
-            }  
-
-            gamebot();      
-    }    
+                    console.log("fine");
+                   break;
+    }      
 }
 
-gamebot();
+gamebot(Math.round(Math.random() * 100));
 
