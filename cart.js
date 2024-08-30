@@ -2,16 +2,22 @@
 
 const cart = {
   items: [],
-  discount: 0,
+  _discount: 0,
 
-  set setDiscount(promocode) {
-    if (promocode === 'METHED') {
-        this.discount = 15;
-    } else if (promocode === 'NEWYEAR') {
-        this.discount = 21;
-    } else {
-        this.discount = 0;
-    }
+  set discount(promocode) {
+    switch (promocode) {
+      case 'METHED':
+        this._discount = 15;
+        break;
+
+        case 'NEWYEAR':
+        this._discount = 15;
+        break;
+    
+      default:
+        this._discount = 0;
+        break;
+    }   
   },
 
   get totalPrice() {
@@ -37,10 +43,8 @@ const cart = {
   },
 
   calculateItemPrice() {
-    return this.items.reduce((acc, item) => {
-      acc += item.price * item.count;
-      return Math.round(acc - acc * this.discount/100);
-    }, 0);
+    const totalPrice = this.items.reduce((acc, item) =>  acc += item.price * item.count, 0);
+    return Math.round(totalPrice - totalPrice * this._discount/100);
   },
 
   clear() {
@@ -56,13 +60,15 @@ const cart = {
 };
 
 
-console.log(cart);
-cart.setDiscount = 'METHED';
-cart.setDiscount = 'hgn';
-console.log(cart.discount);
+
+
+
 
 cart.add('milk', 67, 1);
 cart.add('cream', 100, 2);
-
+console.log(cart.totalPrice);
+cart.discount = 'METHED';
+console.log(cart.totalPrice);
+cart.discount = 'hgn';
 console.log(cart.totalPrice);
 

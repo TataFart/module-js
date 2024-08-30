@@ -3,36 +3,36 @@
 
 
 const restagle = {
-    width: 5,
-    hight: 5,
+    _width: 5,
+    _hight: 5,
 
-    set currentwidth(value) {  
-        if(Number.isInteger(value)) {
-            this.width = value;
-        } else {
+    set width(value) {  
+        if(isNaN(value)) {
             console.log('error, enter number');
-        }    
-        
+        } else {
+            this._width = value;
+        }        
     },
 
-    set currenthight(value) {
-        if(Number.isInteger(value)) {
-            this.hight = value;
-        } else {
+    set hight(value) {
+        if(isNaN(value)) {
             console.log('error, enter number');
-        }    
-        
+        } else {
+            this._hight = value;
+        }
     },
 
     get square() {
-        return `${this.width * this.hight} см2`;
+        return `${+this._width * +this._hight} см2`;
     },
 
     get perimetr() {
-        return `${(this.width + this.hight) * 2} cм`;
+        return `${(+this._width + +this._hight) * 2} cм`;
     }
 }
 
-restagle.currentwidth = "3"
-restagle.currenthight = 6
+restagle.width = "hz";
+restagle.hight = 6;
 console.log(restagle);
+console.log(restagle.square);
+console.log(restagle.perimetr);
