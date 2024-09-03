@@ -3,28 +3,22 @@
 const cart = {
   items: [],
   _discount: 0,
+  count: 0,
 
   set discount(promocode) {
-    switch (promocode) {
-      case 'METHED':
-        this._discount = 15;
-        break;
-
-        case 'NEWYEAR':
-        this._discount = 15;
-        break;
+    this._discount = 0;
     
-      default:
-        this._discount = 0;
-        break;
-    }   
+    if (promocode === "METHED") {
+      this._discount = 15;
+    };
+    if (promocode === "NEWYEAR") {
+      this._discount = 21;
+    };   
   },
 
   get totalPrice() {
     return this.calculateItemPrice();
-  },
-  count: 0,
-
+  }, 
 
   increaseCount(count) {
     this.count += count;
@@ -37,7 +31,6 @@ const cart = {
     );
 
     this.count = cart.increaseCount(count);
-
 
     return this.items;
   },
@@ -58,10 +51,6 @@ const cart = {
     console.log(`Total price :`, this.totalPrice);
   },
 };
-
-
-
-
 
 
 cart.add('milk', 67, 1);
