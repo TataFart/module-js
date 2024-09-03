@@ -1,16 +1,15 @@
 'use strict';
 
-const arr = [];
     
 const getArray = (arr) => {  
+  const newArr = [...arr];
+  const number = Math.round(Math.random() * 10);
+  newArr.push(number);
 
-  if (arr.reduce((a, b)=> a + b, 0) < 50) {
-   const number = Math.round(Math.random() * 10);
-   arr.push(number);
-   getArray(arr);
+  if (newArr.reduce((a, b)=> a + b, 0) < 50) { 
+    return getArray(newArr);
   } 
-  
- return arr; 
+ return newArr; 
 }
 
-console.log(getArray(arr));
+console.log(getArray([]));
