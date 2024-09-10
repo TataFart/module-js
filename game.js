@@ -16,7 +16,7 @@
     const getUserFigure = () => {
         const userFigure = prompt("Камень,ножницы, бумага?");
 
-        if(!userFigure) {
+        if(userFigure === null) {
             const exit = confirm(`Компьютер набрал: ${result.computer} Ваши очки: ${result.player}Вы действительно хотите покинуть игру?`);
             if(exit) {
                 return;
@@ -66,16 +66,15 @@
                     if (playAgain){
                         start()
                                          
-                    } else {
-                         if(this.player === this.computer){
-                            alert(`Ничья по очкам! Компьютер набрал: ${this.computer} Ваши очки: ${this.player}`); 
-                        }
-                        if (this.player > this.computer){
-                            alert(`Вы победили по очкам! Компьютер набрал: ${this.computer} Ваши очки: ${this.player}`);
-                        }  else {
-                            alert(`Компьютер победил по очкам! Компьютер набрал: ${this.computer} Ваши очки: ${this.player}`);
-                            
-                        }                 
+                    } else {                
+                            const exit = confirm(`Компьютер набрал: ${result.computer} Ваши очки: ${result.player}. Вы действительно хотите покинуть игру?`);
+                          
+                            if(exit) {
+                                return;
+                            } else {
+                                return start();
+                            }  
+                                                       
                     }
                 } 
                
@@ -86,8 +85,7 @@
                     const compFigure = getCompFigure();
                     result.checkWinner(userFigure, compFigure);
                 }    
-        }
-             
+        }           
         
 
         return start;
@@ -95,4 +93,3 @@
 
     window.RPS = game();
 })();
-К
