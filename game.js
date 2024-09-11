@@ -17,7 +17,7 @@
         const userFigure = prompt("Камень,ножницы, бумага?");
 
         if(userFigure === null) {
-            const exit = confirm(`Компьютер набрал: ${result.computer} Ваши очки: ${result.player}Вы действительно хотите покинуть игру?`);
+            const exit = confirm(`Вы действительно хотите покинуть игру?`);
             if(exit) {
                 return;
             } else {
@@ -81,10 +81,14 @@
             }
             function start() {
                 const userFigure = getUserFigure();
+
+        
                 if(userFigure)  {
                     const compFigure = getCompFigure();
                     result.checkWinner(userFigure, compFigure);
-                }    
+                }  else {
+                    
+                } 
         }           
         
 
