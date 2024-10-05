@@ -7,89 +7,98 @@
         max = Math.floor(max);
         return Math.floor(Math.random() * (max - min + 1) + min);
     };
+ 
 
     const getCompFigure = () => {
-        const compFigure = FIGURES_RUS[getRandomIntInclusive(0, 2)];
+        const compFigure = getRandomIntInclusive(0, 2);        
         return compFigure;
     }
-
-    const getUserFigure = () => {
-        const userFigure = prompt("Камень,ножницы, бумага?");
-
-        if(userFigure === null) {
-            const exit = confirm(`Вы действительно хотите покинуть игру?`);
-            if(exit) {
-                return;
-            } else {
-                return getUserFigure();
-            }                                 
-        }
-
-        userFigure.toLowerCase();
-     
-        switch (true) {                         
-                      
-            case userFigure === 'камень' || userFigure === 'к' || userFigure === 'кам' || userFigure === 'камен':
-                return 'камень';
-            case userFigure === 'ножницы' || userFigure === 'н' || userFigure === 'нож' || userFigure === 'ножнцы':
-                return 'ножницы';
-            case userFigure === 'бумага' || userFigure === 'б' || userFigure === 'бум' || userFigure === 'бумга':
-                return 'бумага';
-            default:
-                alert("Неверный ввод. Попробуйте еще раз.");
-                return getUserFigure();
-        }
-    };
-
-    const game = () => {
-        const result = {
-            player: 0,
-            computer: 0,
+    const playAgain = (res, rej) => {
+        
+        while (!confirm("Сыграем ещё?")){
             
-            checkWinner(userFigure, compFigure) {
-
-                if (userFigure ===  compFigure) {
-                    alert(`Ваша фигура - ${userFigure}, компьютер показал - ${compFigure}. Ничья!`);
-                  } else if (
-                    (userFigure === 'камень' &&  compFigure === 'ножницы') ||
-                    (userFigure === 'бумага' &&  compFigure === 'камень') ||
-                    (userFigure === 'ножницы' &&  compFigure === 'бумага')
-                  ) {
-                    this.player += 1;
-                    alert (`Ваша фигура - ${userFigure}, компьютер показал - ${compFigure}. Победа за вами!` );
-                  } else {
-                    this.computer += 1;
-                    alert (`Ваша фигура - ${userFigure}, компьютер показал - ${compFigure}. Победил компьютер!` );
-                  }               
-                const  playAgain = confirm('Сыграем ещё?');
-                
-                    if (playAgain){
-                        start()
-                                         
-                    } else {                
-                            const exit = confirm(`Компьютер набрал: ${result.computer} Ваши очки: ${result.player}. Вы действительно хотите покинуть игру?`);
-                          
-                            if(exit) {
-                                return;
-                            } else {
-                                return start();
-                            }  
-                                                       
-                    }
-                } 
+            if (confirm(`Хотите выйти?`)&& confirm("Вы уверены?")) {
                
+                return rej();
             }
+        }
+        return res();
+    }
+
+  
+     const getUserFigure = () => {
+       
+       
+        const userInput = prompt(`${FIGURES_RUS[0]}, ${FIGURES_RUS[1]}, ${FIGURES_RUS[2]}?`);
+           
+        if  (userInput === null) {
+           
+            playAgain(()=>getUserFigure(),()=>alert("Пока"))
+            return undefined
+           
+        }
+           
+        while  (userInput === '') {
+                console.log("Пустой ввод, начнем сначала.");
+                return getUserFigure();
+        }
+
+        const userFigure = userInput.toLowerCase().trim();
+        console.log(userFigure);
+
+            
+        if (FIGURES_RUS.includes(userFigure)) {
+            console.log(FIGURES_RUS.indexOf(userFigure));
+            return FIGURES_RUS.indexOf(userFigure);
+        } else {
+            alert('Неверный ввод, попробуйте снова.');
+            return getUserFigure();
+            }
+        }    
+        const game = () => {
+            const result = {
+                player: 0,
+                computer: 0,
+         
+            checkWinner(userFigure, compFigure) {
+                    if(userFigure === compFigure) {
+                        return alert(`Ваша фигура - ${FIGURES_RUS[userFigure]}, компьютер показал - ${FIGURES_RUS[compFigure]}. Ничья!`);  
+                    }
+                    if ((userFigure + 1) % 3 === compFigure ) {
+                        this.player += 1;
+                        return alert(`Ваша фигура - ${FIGURES_RUS[userFigure]}, компьютер показал - ${FIGURES_RUS[compFigure]}. Победа за вами!`);
+                      } else{
+                        this.computer += 1;
+                        return alert(`Ваша фигура - ${FIGURES_RUS[userFigure]}, компьютер показал - ${FIGURES_RUS[compFigure]}. Победил компьютер!`);
+                      }
+                      
+                    }       
+                              
+            }
+
+    
+   
+
             function start() {
+                
                 const userFigure = getUserFigure();
 
+                if (userFigure !== undefined) {
+                    const compFig = getCompFigure();
+              
+                    console.log(compFig);
+                   console.log("дальше");
+                    result.checkWinner(userFigure, compFig);
+    
+    
+                    playAgain(()=>start(), ()=>alert(`Компьютер набрал: ${result.computer} Ваши очки: ${result.player}.`) )     
+                }
+                     
+
+                           
+                        
         
-                if(userFigure)  {
-                    const compFigure = getCompFigure();
-                    result.checkWinner(userFigure, compFigure);
-                }  else {
-                    
-                } 
-        }           
+            }           
         
 
         return start;
